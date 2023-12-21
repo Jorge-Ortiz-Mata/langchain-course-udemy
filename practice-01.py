@@ -52,3 +52,17 @@ result = general_chain({
 
 print(result["code"])
 print(result["test"])
+
+
+# Question about doing it in a different way
+
+def create_test(question):
+  response = llm(question)
+
+  return response
+
+test_one = create_test("Write a test in ruby where a function returns a list of five numbers")
+test_two = create_test("Write a test in javascript where a function returns a list of five numbers")
+
+print(test_one)
+print(test_two)

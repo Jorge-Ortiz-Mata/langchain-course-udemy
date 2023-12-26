@@ -17,24 +17,27 @@ text_splitter = CharacterTextSplitter(
   chunk_overlap=0 # It takes characters from the previos chunck (100, 200). It is useful on PDF's
 )
 
+# Load document file
 loader = TextLoader("facts.txt")
 
+# Split document into multiple chuncks
 docs = loader.load_and_split(
   text_splitter=text_splitter
 )
 
+# Store embedings (documents) in the database
 db = Chroma.from_documents(
   docs,
   embedding=embeddings,
   persist_directory="emb"
 )
 
-results = db.similarity_search_with_score(
+# Find chunks with similar result according to this question.
+results = db.similarity_search(
     "What is an interesting fact about the English language?"
   )
 
+# Show chunks information
 for result in results:
     print("\n")
-    print(result)
-    print(result[1])
-    print(result[0].page_content)
+    print(result.page_content)

@@ -34,8 +34,8 @@ db = Chroma.from_documents(
 
 # Find chunks with similar result according to this question.
 results = db.similarity_search(
-    "What is an interesting fact about the English language?"
-  )
+  "What is an interesting fact about the English language?"
+)
 
 # Show chunks information
 for result in results:
